@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package todo;
+option go_package = "todo.v1;todov1";
+
+
+service Todo {
+  rpc CreateTask (CreateRequest) returns (CreateResponse);
+  rpc DoneTask (DoneRequest) returns (DoneResponse);
+  rpc DeleteTask (DeleteRequest) returns (DeleteResponse);
+  rpc ListTasks (ListRequest) returns (ListResponse);
+}
+
+message CreateRequest {
+  string title = 1;
+  string description = 2;
+  int64 uid = 3;
+}
+
+message CreateResponse {}
+
+message DoneRequest {
+  string title = 1;
+  int64 uid = 2;
+}
+
+message DoneResponse {}
+
+message DeleteRequest {
+  string title = 1;
+  int64 uid = 2;
+}
+
+message DeleteResponse {}
+
+message ListRequest {
+  int64 uid = 1;
+}
+
+message Task {
+  string title = 1;
+  string description = 2;
+  bool is_done = 3;
+  int64 task_id = 4;
+}
+
+message ListResponse {
+  repeated Task tasks = 1;
+}
+
