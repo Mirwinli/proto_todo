@@ -3,6 +3,8 @@ syntax = "proto3";
 package todo;
 option go_package = "todo.v1;todov1";
 
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/duration.proto";
 
 service Todo {
   rpc CreateTask (CreateRequest) returns (CreateResponse);
@@ -42,6 +44,8 @@ message Task {
   string description = 2;
   bool is_done = 3;
   int64 task_id = 4;
+  google.protobuf.Timestamp create_at = 5;
+  google.protobuf.Duration duration = 6;
 }
 
 message ListResponse {
