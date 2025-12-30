@@ -45,7 +45,8 @@ message Task {
   bool is_done = 3;
   int64 task_id = 4;
   google.protobuf.Timestamp create_at = 5;
-  google.protobuf.Duration duration = 6;
+  google.protobuf.Timestamp done_at = 6;
+  google.protobuf.Duration duration = 7;
 }
 
 message ListResponse {

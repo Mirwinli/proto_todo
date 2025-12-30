@@ -346,7 +346,8 @@ type Task struct {
 	IsDone        bool                   `protobuf:"varint,3,opt,name=is_done,json=isDone,proto3" json:"is_done,omitempty"`
 	TaskId        int64                  `protobuf:"varint,4,opt,name=task_id,json=taskId,proto3" json:"task_id,omitempty"`
 	CreateAt      *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=create_at,json=createAt,proto3" json:"create_at,omitempty"`
-	Duration      *durationpb.Duration   `protobuf:"bytes,6,opt,name=duration,proto3" json:"duration,omitempty"`
+	DoneAt        *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=done_at,json=doneAt,proto3" json:"done_at,omitempty"`
+	Duration      *durationpb.Duration   `protobuf:"bytes,7,opt,name=duration,proto3" json:"duration,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -412,6 +413,13 @@ func (x *Task) GetTaskId() int64 {
 func (x *Task) GetCreateAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.CreateAt
+	}
+	return nil
+}
+
+func (x *Task) GetDoneAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.DoneAt
 	}
 	return nil
 }
@@ -486,14 +494,15 @@ const file_todo_todo_proto_rawDesc = "" +
 	"\x03uid\x18\x02 \x01(\x03R\x03uid\"\x10\n" +
 	"\x0eDeleteResponse\"\x1f\n" +
 	"\vListRequest\x12\x10\n" +
-	"\x03uid\x18\x01 \x01(\x03R\x03uid\"\xe0\x01\n" +
+	"\x03uid\x18\x01 \x01(\x03R\x03uid\"\x95\x02\n" +
 	"\x04Task\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\x12 \n" +
 	"\vdescription\x18\x02 \x01(\tR\vdescription\x12\x17\n" +
 	"\ais_done\x18\x03 \x01(\bR\x06isDone\x12\x17\n" +
 	"\atask_id\x18\x04 \x01(\x03R\x06taskId\x127\n" +
-	"\tcreate_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\bcreateAt\x125\n" +
-	"\bduration\x18\x06 \x01(\v2\x19.google.protobuf.DurationR\bduration\"0\n" +
+	"\tcreate_at\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\bcreateAt\x123\n" +
+	"\adone_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\x06doneAt\x125\n" +
+	"\bduration\x18\a \x01(\v2\x19.google.protobuf.DurationR\bduration\"0\n" +
 	"\fListResponse\x12 \n" +
 	"\x05tasks\x18\x01 \x03(\v2\n" +
 	".todo.TaskR\x05tasks2\xdf\x01\n" +
@@ -533,21 +542,22 @@ var file_todo_todo_proto_goTypes = []any{
 }
 var file_todo_todo_proto_depIdxs = []int32{
 	9,  // 0: todo.Task.create_at:type_name -> google.protobuf.Timestamp
-	10, // 1: todo.Task.duration:type_name -> google.protobuf.Duration
-	7,  // 2: todo.ListResponse.tasks:type_name -> todo.Task
-	0,  // 3: todo.Todo.CreateTask:input_type -> todo.CreateRequest
-	2,  // 4: todo.Todo.DoneTask:input_type -> todo.DoneRequest
-	4,  // 5: todo.Todo.DeleteTask:input_type -> todo.DeleteRequest
-	6,  // 6: todo.Todo.ListTasks:input_type -> todo.ListRequest
-	1,  // 7: todo.Todo.CreateTask:output_type -> todo.CreateResponse
-	3,  // 8: todo.Todo.DoneTask:output_type -> todo.DoneResponse
-	5,  // 9: todo.Todo.DeleteTask:output_type -> todo.DeleteResponse
-	8,  // 10: todo.Todo.ListTasks:output_type -> todo.ListResponse
-	7,  // [7:11] is the sub-list for method output_type
-	3,  // [3:7] is the sub-list for method input_type
-	3,  // [3:3] is the sub-list for extension type_name
-	3,  // [3:3] is the sub-list for extension extendee
-	0,  // [0:3] is the sub-list for field type_name
+	9,  // 1: todo.Task.done_at:type_name -> google.protobuf.Timestamp
+	10, // 2: todo.Task.duration:type_name -> google.protobuf.Duration
+	7,  // 3: todo.ListResponse.tasks:type_name -> todo.Task
+	0,  // 4: todo.Todo.CreateTask:input_type -> todo.CreateRequest
+	2,  // 5: todo.Todo.DoneTask:input_type -> todo.DoneRequest
+	4,  // 6: todo.Todo.DeleteTask:input_type -> todo.DeleteRequest
+	6,  // 7: todo.Todo.ListTasks:input_type -> todo.ListRequest
+	1,  // 8: todo.Todo.CreateTask:output_type -> todo.CreateResponse
+	3,  // 9: todo.Todo.DoneTask:output_type -> todo.DoneResponse
+	5,  // 10: todo.Todo.DeleteTask:output_type -> todo.DeleteResponse
+	8,  // 11: todo.Todo.ListTasks:output_type -> todo.ListResponse
+	8,  // [8:12] is the sub-list for method output_type
+	4,  // [4:8] is the sub-list for method input_type
+	4,  // [4:4] is the sub-list for extension type_name
+	4,  // [4:4] is the sub-list for extension extendee
+	0,  // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_todo_todo_proto_init() }
